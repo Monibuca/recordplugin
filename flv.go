@@ -4,6 +4,8 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"time"
+	"strings"
 
 	. "github.com/Monibuca/engine/v3"
 	. "github.com/Monibuca/utils/v3"
@@ -27,8 +29,11 @@ func getDuration(file FileWr) uint32 {
 	return 0
 }
 func SaveFlv(streamPath string, append bool) error {
+	raw := time.Now().String()
+	raw = raw[:strings.Index(raw, ":")] +"_"+  raw[strings.Index(raw,":") + 1 :]
+	raw = raw[:strings.Index(raw, ":")] +"_"+  raw[strings.Index(raw,":") + 1 :]
 	flag := os.O_CREATE
-	filePath := filepath.Join(config.Path, streamPath + " " +time.Now().String()+".flv")
+	filePath := filepath.Join(config.Path, streamPath + "-" +raw + ".flv")
 	if append && !Exist(filePath) {
 		append = false
 	}
