@@ -1,4 +1,4 @@
-module github.com/Monibuca/plugin-record/v3
+module github.com/oldking139/monibuca-record-mod/main
 
 go 1.13
 
