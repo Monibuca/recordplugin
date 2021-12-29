@@ -83,7 +83,7 @@ func run() {
 	http.HandleFunc("/api/record/flv/stop", func(w http.ResponseWriter, r *http.Request) {
 		CORS(w, r)
 		if streamPath := r.URL.Query().Get("streamPath"); streamPath != "" {
-			filePath := filepath.Join(config.Path, streamPath+".flv")
+			filePath := filepath.Join(config.Path, streamPath + " " +time.Now().String()+".flv")
 			if stream, ok := recordings.Load(filePath); ok {
 				output := stream.(*Subscriber)
 				output.Close()
@@ -110,7 +110,7 @@ func run() {
 	http.HandleFunc("/api/record/flv/delete", func(w http.ResponseWriter, r *http.Request) {
 		CORS(w, r)
 		if streamPath := r.URL.Query().Get("streamPath"); streamPath != "" {
-			filePath := filepath.Join(config.Path, streamPath+".flv")
+			filePath := filepath.Join(config.Path, streamPath + " " +time.Now().String()+".flv")
 			if Exist(filePath) {
 				if err := os.Remove(filePath); err != nil {
 					w.Write([]byte(err.Error()))

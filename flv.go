@@ -28,7 +28,7 @@ func getDuration(file FileWr) uint32 {
 }
 func SaveFlv(streamPath string, append bool) error {
 	flag := os.O_CREATE
-	filePath := filepath.Join(config.Path, streamPath+".flv")
+	filePath := filepath.Join(config.Path, streamPath + " " +time.Now().String()+".flv")
 	if append && !Exist(filePath) {
 		append = false
 	}

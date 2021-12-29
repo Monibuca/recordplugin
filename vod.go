@@ -12,7 +12,7 @@ import (
 func VodHandler(w http.ResponseWriter, r *http.Request) {
 	CORS(w, r)
 	streamPath := r.RequestURI[5:]
-	filePath := filepath.Join(config.Path, streamPath)
+	filePath := filepath.Join(config.Path, streamPath + " " +time.Now().String())
 	if file, err := os.Open(filePath); err == nil {
 		w.Header().Set("Transfer-Encoding", "chunked")
 		w.Header().Set("Content-Type", "video/x-flv")

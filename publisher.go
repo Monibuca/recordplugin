@@ -12,7 +12,7 @@ import (
 )
 
 func PublishFlvFile(streamPath string) error {
-	flvPath := filepath.Join(config.Path, streamPath+".flv")
+	flvPath := filepath.Join(config.Path, streamPath + " " +time.Now().String()+".flv")
 	os.MkdirAll(filepath.Dir(flvPath), 0755)
 	if file, err := os.Open(flvPath); err == nil {
 		stream := Stream{
